@@ -1,0 +1,24 @@
+https://github.com/usememos/memos/tree/main
+
+使用 Docker 在几秒钟内完成部署
+
+docker run -d --name memos -p 5230:5230 -v ~/.memos/:/var/opt/memos neosmemo/memos:stable
+
+安装完成后
+ 开机启动
+ docker ps
+docker update --restart=always 5c6575db7bc3
+ufw allow 5230/tcp
+
+
+
+备份：
+进入网页后 存储 选 本地文件系统
+命令：cd .memos
+          ls -ahl
+          tar cvf memos-20241205.tar ~/.memos
+重装： docker stop memos 
+          docker rm memos
+          docker run -d --name memos -p 5230:5230 -v ~/.memos/:/var/opt/memos neosmemo/memos:stable
+         查看旧images： docker images |grep memos
+          删除旧images docker rmi 5c6575db7bc3
