@@ -43,6 +43,26 @@
             /* 轻微的阴影，增加层次感 */
             padding: 10px;
             /* 内边距 */
+            transition: all 0.3s ease; /* 添加过渡效果 */
+        }
+
+        /* 隐藏时的导航栏样式 */
+        .nav.collapsed {
+            padding: 0; /* 去掉内边距 */
+            background-color: transparent; /* 背景透明 */
+            border: 1px solid #B8D4B8; /* 只保留边框 */
+            box-shadow: none; /* 去掉阴影 */
+            height: 2px; /* 高度设置为2px */
+            overflow: hidden; /* 隐藏内容 */
+            cursor: pointer; /* 鼠标悬停时显示为手型 */
+        }
+
+        .nav.collapsed h3 {
+            display: none; /* 隐藏标题 */
+        }
+
+        .nav.collapsed .nav-links {
+            display: none; /* 隐藏链接部分 */
         }
 
         /* 导航标题的样式，背景色为紫色，文字为白色 */
@@ -59,6 +79,8 @@
             /* 字体大小 */
             border-radius: 3px;
             /* 标题的圆角 */
+            cursor: pointer;
+            /* 鼠标悬停时显示为手型 */
         }
 
         /* 设置导航链接容器的样式，使用flex布局，允许换行，行间距设置为10px */
@@ -167,87 +189,112 @@
 <body>
     <div class="container">
         <!-- 小说网 -->
-        <div class="nav">
-            <h3>小说网</h3>
+        <div class="nav" id="novel">
+            <h3 onclick="toggleSection('novel')">小说网</h3>
             <div class="nav-links">
-                <a href=http://www.qidian.com />起点中文</a>
-                <a href=http://wap.zzs5.com />猪猪手机</a>
-                <a href=http://downnovel.com />笔趣阁66</a>
-                <a href=http://www.fltxt.com/>福利小说网</a>
-                <a href=https://www.biquge2.com />笔趣阁2</a>
-                <a href=https://69shuba.cx/>69书吧</a>
-                <a href=https://101kan.com/>101看书</a>
+                <a href="http://www.qidian.com">起点中文</a>
+                <a href="http://wap.zzs5.com">猪猪手机</a>
+                <a href="http://downnovel.com">笔趣阁66</a>
+                <a href="http://www.fltxt.com">福利小说网</a>
+                <a href="https://www.biquge2.com">笔趣阁2</a>
+                <a href="https://69shuba.cx">69书吧</a>
+                <a href="https://101kan.com">101看书</a>
             </div>
         </div>
 
         <!-- AI网导航部分 -->
-        <div class="nav">
-            <h3>AI网</h3>
+        <div class="nav" id="ai">
+            <h3 onclick="toggleSection('ai')">AI网</h3>
             <div class="nav-links">
-               <a href="https://chat.deepseek.com/">deepseek</a>
-               <a href="https://gemini.google.com/app">gemini</a>
-               <a href="https://chatgpt.com/">OpenAI</a>
-               <a href="https://kimi.moonshot.cn/">kimi</a>
+                <a href="https://chat.deepseek.com/">deepseek</a>
+                <a href="https://gemini.google.com/app">gemini</a>
+                <a href="https://chatgpt.com/">OpenAI</a>
+                <a href="https://kimi.moonshot.cn/">kimi</a>
             </div>
         </div>
-        
-        
+
         <!-- 门户网导航部分 -->
-        <div class="nav">
-            <h3>门户网</h3>
+        <div class="nav" id="portal">
+            <h3 onclick="toggleSection('portal')">门户网</h3>
             <div class="nav-links">
                 <a href="https://www.google.com/?gl=us&amp;hl=en&amp;gws_rd=cr&amp;pws=0">谷歌</a>
-                <a href=https://cn.bing.com />Bing</a>
-                <a href=https://www.baidu.com />百度</a>
-                <a href=https://wap.sogou.com />搜狗</a>
+                <a href="https://cn.bing.com">Bing</a>
+                <a href="https://www.baidu.com">百度</a>
+                <a href="https://wap.sogou.com">搜狗</a>
                 <a href="https://www.bilibili.com/">bibili</a>
                 <a href="http://www.youku.com/">优酷网</a>
                 <a href="https://www.youtube.com/?gl=US">youtube</a>
-                <a href="https://www.dailymotion.com">dailymotion</a> 
-                <a href=http://www.qq.com />QQ</a>
-                <a href=http://www.163.com />163</a>
-                <a href=http://news.sina.com.cn />新浪</a>
-                <a href=http://www.ifeng.com />凤凰网</a>
-                <a href=https://www.zaobao.com.sg/global />联合早报</a>
-                <a href=https://apnews.com />美联社</a>
-              
-                <a href=http://bbs.hqdoor.com />虹桥门户网</a>
-                <a href=http://bbs.5iyq.com/forum.php>乐清上班族</a>
-
+                <a href="https://www.dailymotion.com">dailymotion</a>
+                <a href="http://www.qq.com">QQ</a>
+                <a href="http://www.163.com">163</a>
+                <a href="http://news.sina.com.cn">新浪</a>
+                <a href="http://www.ifeng.com">凤凰网</a>
+                <a href="https://www.zaobao.com.sg/global">联合早报</a>
+                <a href="https://apnews.com">美联社</a>
+                <a href="http://bbs.hqdoor.com">虹桥门户网</a>
+                <a href="http://bbs.5iyq.com/forum.php">乐清上班族</a>
             </div>
         </div>
 
         <!-- 学习网导航部分 -->
-        <div class="nav">
-            <h3>学习网</h3>
+        <div class="nav" id="study">
+            <h3 onclick="toggleSection('study')">学习网</h3>
             <div class="nav-links">
-                <a href=https://ke.qq.com/>QQ课堂</a>
-                <a href=https://www.douyin.com/>抖音</a>
-                <a href=https://study.163.com/>网易云课堂</a>
-                <a href=https://chuanke.baidu.com/>百度传课</a>
-                <a href=https://www.icourse163.org/channel/3002.htm#>中国大学</a>
-                <a href=https://next.xuetangx.com/course/ynu08081002096/1516029>学堂在线</a> 
+                <a href="https://ke.qq.com/">QQ课堂</a>
+                <a href="https://www.douyin.com/">抖音</a>
+                <a href="https://study.163.com/">网易云课堂</a>
+                <a href="https://chuanke.baidu.com/">百度传课</a>
+                <a href="https://www.icourse163.org/channel/3002.htm#">中国大学</a>
+                <a href="https://next.xuetangx.com/course/ynu08081002096/1516029">学堂在线</a>
             </div>
         </div>
-        
+
         <!-- 其他网导航部分 -->
-        <div class=nav>
-            <h3>其他网</h3>
-            <div class=nav-links>
-                <a href=https://luntan8866.github.io />github</a>
-                <a href=https://www.right.com.cn/FORUM/forum.php>恩山论坛</a>
-                <a href=http://www.52pojie.cn />52破解</a>
-                <a href=http://bbs.wuyou.net/forum.php />无忧启动</a>
-                <a href=http://192.168.1.1:8080 />内op_frp</a>
-                <a href=http://op.zjomt.link />外op_frp</a>
-                <a href=https://me.zjomt.link />memos</a>
-                <a href=http://luntan8866.ysepan.com />永硕</a>
-                <a href=https://masuit.com />软件</a>
-                <a href=https://hostloc.com/>主机论坛</a>
-                
+        <div class="nav" id="other">
+            <h3 onclick="toggleSection('other')">其他网</h3>
+            <div class="nav-links">
+                <a href="https://luntan8866.github.io">github</a>
+                <a href="https://www.right.com.cn/FORUM/forum.php">恩山论坛</a>
+                <a href="http://www.52pojie.cn">52破解</a>
+                <a href="http://bbs.wuyou.net/forum.php">无忧启动</a>
+                <a href="http://192.168.1.1:8080">内op_frp</a>
+                <a href="http://op.zjomt.link">外op_frp</a>
+                <a href="https://me.zjomt.link">memos</a>
+                <a href="http://luntan8866.ysepan.com">永硕</a>
+                <a href="https://masuit.com">软件</a>
+                <a href="https://hostloc.com/">主机论坛</a>
             </div>
         </div>
     </div>
+
+    <script>
+        // 切换导航部分的显示和隐藏
+        function toggleSection(id) {
+            const nav = document.getElementById(id);
+            nav.classList.toggle('collapsed');
+            localStorage.setItem(`nav-${id}-collapsed`, nav.classList.contains('collapsed'));
+        }
+
+        // 加载时恢复隐藏状态
+        document.addEventListener('DOMContentLoaded', () => {
+            const navs = document.querySelectorAll('.nav');
+            navs.forEach(nav => {
+                const id = nav.id;
+                const isCollapsed = localStorage.getItem(`nav-${id}-collapsed`) === 'true';
+                if (isCollapsed) {
+                    nav.classList.add('collapsed');
+                }
+
+                // 绑定双击事件
+                nav.addEventListener('dblclick', () => {
+                    if (nav.classList.contains('collapsed')) {
+                        nav.classList.remove('collapsed');
+                        localStorage.setItem(`nav-${id}-collapsed`, false);
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
