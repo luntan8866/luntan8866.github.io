@@ -292,6 +292,20 @@
                         localStorage.setItem(`nav-${id}-collapsed`, false);
                     }
                 });
+
+                // 绑定触摸事件（用于移动设备）
+                let lastTap = 0;
+                nav.addEventListener('touchend', (event) => {
+                    const currentTime = new Date().getTime();
+                    const tapLength = currentTime - lastTap;
+                    if (tapLength < 500 && tapLength > 0) {
+                        if (nav.classList.contains('collapsed')) {
+                            nav.classList.remove('collapsed');
+                            localStorage.setItem(`nav-${id}-collapsed`, false);
+                        }
+                    }
+                    lastTap = currentTime;
+                });
             });
         });
     </script>
